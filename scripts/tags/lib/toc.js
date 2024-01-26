@@ -14,7 +14,7 @@ function layoutDocTree(ctx, pages) {
   pages.forEach((p, i) => {
     el += '<li>'
     el += '<a class="list-link" href="' + url_for(p.path) + '">'
-    el += '<span>' + (p.title || p.seo_title) + '</span>'
+    el += '<span>' + p.title + '</span>'
     el += '</a>'
     el += '</li>'
   })
@@ -43,7 +43,7 @@ module.exports = ctx => function(args) {
   el += '</summary>'
 
   if (args.wiki) {
-    const proj = ctx.theme.config.wiki.projects[args.wiki]
+    const proj = ctx.theme.config.wiki.tree[args.wiki]
     if (proj == undefined) {
       return ''
     }

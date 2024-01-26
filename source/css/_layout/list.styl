@@ -1,10 +1,10 @@
 // list
-.post-list
+.l_main .post-list
   margin: 1rem
   .post-title:first-child
     margin-top: .5rem
 
-.post-list
+.l_main .post-list
   .post-title
     font-weight: 500
     margin: 1.25rem 0 .75rem 0
@@ -24,11 +24,17 @@
   display: block
   margin: 1rem 0
   border-radius: $border-card
-  box-shadow: 0 2px 8px 0px rgba(0, 0, 0, 0.02)
+  background: var(--card)
+  @media (prefers-color-scheme: dark)
+    &:hover
+      box-shadow: 0 0 4px -2px $color-theme, 0 0 24px -8px $color-theme
+  @media (prefers-color-scheme: light)
+    box-shadow: $boxshadow-card
+    hover-float()
   trans1 all
   overflow: hidden
   z-index: 0
-  background: var(--card)
+  
   position: relative
   .excerpt
     margin: 1rem 0
@@ -52,13 +58,13 @@
       img
         object-fit: contain
         height: 1.5em
+      svg
+        height: 1.5rem
+        color: $c-red
 
-.post-list .post-card:hover
-  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.1), 0 4px 16px 0px rgba(0, 0, 0, 0.1)
-  img 
-    transform: scale(1.02)
-    filter: brightness(80%)
-
+.post-list.post .post-card:hover
+  img
+    filter: brightness(50%)
 
 // common article
 .post-list .md-text
@@ -85,22 +91,16 @@
     object-fit: cover
     width: 100%
     border-radius: 0
-    height: 280px
-    @media screen and (max-width: 900px)
-      height: 240px
-    @media screen and (max-width: $device-tablet)
-      height: 220px
-    @media screen and (max-width: $device-mobile-425)
-      height: 200px
-    @media screen and (max-width: $device-mobile-375)
-      height: 180px
-
+    aspect-ratio: hexo-config('article.cover_ratio')
+    
 .post-list .post-card.post.photo
   .cover
     position: relative
     line-height: 0
     img
       width: 100%
+      object-fit: cover
+      aspect-ratio: hexo-config('article.cover_ratio')
     .cover-info
       padding: 1.5rem 1rem
       position: absolute
@@ -145,12 +145,11 @@
 
 .post-list .post-card.wiki article .preview
   display: flex
-  width: 200px
-  margin: 1rem .5rem
-  @media screen and (min-width: 950px)
-    margin: 1rem
+  margin: 1rem 3rem
   align-items: center
   img
+    width: 96px
+    max-height: 96px
     object-fit: contain
     &:not(.lazy)
       trans1: transform 0.75s
@@ -162,5 +161,19 @@
   flex: 1
   overflow: hidden
   word-wrap: break-word
+  .caps
+    line-height: 1
+    margin-bottom: 0.75rem
+  .cap
+    --theme-block: var(--block)
+    background: var(--theme-block)
+    padding: 2px 4px
+    border-radius: 2px
   p:last-child
     margin-bottom: 0
+  .cap+.cap
+    margin-left: 4px
+
+.post-list.archives
+  @media screen and (max-width: $device-mobile)
+    margin: 1rem 0

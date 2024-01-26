@@ -8,7 +8,7 @@
     margin-bottom: .5em
     position: relative
     padding: 4px 0
-    color: var(--text-p3)
+    color: var(--text-p1)
     &:after
       content: ""
       position: absolute
@@ -18,25 +18,25 @@
       right: 0
       z-index: -1
       border-radius: 4px
-      background: var(--block-border)
+      background: $color-theme
   a.post
     display: inline-flex
     align-items: baseline
     margin: 0.25rem 0
     color: var(--text-p1)
-    &:hover
-      color: $color-hover
+    trans2 color border
+    border-bottom: 1px dashed var(--text-meta)
     time
       font-family: $ff-code
       margin-right: 1em
       font-weight: 700
       flex-shrink: 0
-      opacity .5
-  &:hover
-    .archive-header
-      color: var(--text-p1)
-      &:after
-        background: $color-theme
+      color: var(--text-p4)
+    &:hover
+      border-bottom: 1px solid $color-theme
+      color: var(--text-p0)
+      time
+        color: $color-theme
 
 
 
